@@ -1,0 +1,177 @@
+<!DOCTYPE HTML> 
+<html>
+<head>
+<title>Swipe 2</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/> 
+<!-- <link href='style.css' rel='stylesheet'/> -->
+<style>
+
+body{
+  margin: 0;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+  background: #eee;
+  border: 1px solid #ddd;
+}
+
+
+
+/* ESTILOS SWIPE */
+
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+}
+
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+  /*text-align: center;*/
+  margin-bottom: .3em;
+}
+
+.swipe-wrap img{
+  width: 90%; /*<<<<< WIDTH DE CADA SLIDE */
+  display: block;
+  margin: 0 auto;
+  
+}
+
+/*CIRCULOS POSITION*/
+/*nav{
+  text-align: center;
+}*/
+#bullets{
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+#bullets li{
+  list-style: none;
+  display: inline-block;
+  
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  border-radius: 50%;
+  background-color: grey;
+}
+
+#bullets li.on{
+ background-color: orange; 
+}
+
+/*FLECHAS BOTONES SIGUIENTE Y ANTERIOR*/
+.slide-arrow-left,.slide-arrow-rigth{
+  
+  width: 10%;
+  height: 20%;
+  position: absolute;
+  top: 50%;
+  margin-top: -10%;
+
+  /*theme*/
+  -moz-box-shadow: 0 0 5px rgba(178,178,178,.66);
+  -webkit-box-shadow: 0 0 5px rgba(178,178,178,.66);
+  box-shadow: 0 0 5px rgba(178,178,178,.66);
+
+}
+
+.slide-arrow-left{
+  left: 0px;
+
+  /*theme*/
+  background: #fff url('_/images/slide-arrow-left.png') no-repeat center center;
+  -webkit-border-radius: 0px 5px 5px 0px;
+  -moz-border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 5px 5px 0px;
+
+}
+
+.slide-arrow-rigth{
+  right: 0px;
+  
+  /*theme*/
+  background: #fff url('_/images/slide-arrow-right.png') no-repeat center center;
+  -webkit-border-radius: 5px 0px 0px 5px;
+  -moz-border-radius: 5px 0px 0px 5px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+
+</style>
+
+</head>
+<body>
+
+
+<!-- SLIDE -->
+<div id='mySwipe' class='swipe'>
+  <div class='swipe-wrap'>
+      <div><img src="http://lorempixel.com/400/400/city/1/" alt="img1"></div>
+      <div><img src="http://lorempixel.com/400/400/city/8/" alt="img2"></div>
+      <div><img src="http://lorempixel.com/400/400/city/3/" alt="img3"></div>
+      <div><img src="http://lorempixel.com/400/400/city/4/" alt="img4"></div>
+      <div><img src="http://lorempixel.com/400/400/city/5/" alt="img5"></div>
+  </div>
+
+    <!-- BOTONES SIGUIENTE Y ANTERIOR -->
+  <div class="slide-arrow-left" onclick='mySwipe.prev()'></div>
+  <div class="slide-arrow-rigth" onclick='mySwipe.next()'></div>
+
+  <!-- CIRCULOS BULLETS -->
+  <ul id="bullets">
+      <li class="on"></li>
+      <li class=" "></li>
+      <li class=" "></li>
+      <li class=" "></li>
+      <li class=" "></li>
+  </ul>
+
+</div> <!-- end slide -->
+
+
+
+
+
+
+
+
+<script src='_/js/swipe.js'></script>
+<script>
+
+// SLIDE DECLARATION AND CONFIG
+var elem = document.getElementById('mySwipe');
+window.mySwipe = Swipe(elem, {
+  // startSlide: 4,
+   auto: 3000,
+   continuous: true,
+  // disableScroll: true,
+  // stopPropagation: true,
+  callback: function(pos) {
+      var i = bullets.length;
+      while (i--) {
+        bullets[i].className = ' ';
+      }
+      bullets[pos].className = 'on';
+  }
+  // transitionEnd: function(index, element) {}
+});
+//CIRCULOS
+var bullets = document.getElementById('bullets').getElementsByTagName('li');
+
+</script>
+
+<!-- <script src="http://localhost:35729/livereload.js"></script> -->
+</body>
+</html>
